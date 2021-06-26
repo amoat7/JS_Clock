@@ -4,7 +4,7 @@ const second = document.querySelector('.second');
 const hour = document.querySelector('.hour');
 
 const minute = document.querySelector('.minute');
-
+const audio = document.querySelector('audio')
 props = [
     {
         background_image: 'url(backgrounds/joker.jpeg)',
@@ -65,13 +65,17 @@ function changeBackground(e){
       );
     
 }
+function audioplay(){
+    audio.play()
+}
+
 change.addEventListener('click', changeBackground)
 function setDate(){
     const now  = new Date();
     const seconds = now.getSeconds();
     const secondsDegrees = (seconds/60)*360;
     second.style.transform =  `rotate(${secondsDegrees}deg)`
-
+   
 
     const minutes = now.getMinutes();
     const minutesDegrees = (minutes/60.0)*360;
@@ -79,9 +83,10 @@ function setDate(){
 
 
     const hours = now.getHours();
-    const hourDegrees = (hours/12)*360;
-    hour.style.transform =  `rotate(${hourDegrees+minutesDegrees/60}deg)`;
-
+    const hourDegrees = (hours/12.0)*360;
+    hour.style.transform =  `rotate(${hourDegrees+minutesDegrees/12}deg)`;
+    window.addEventListener('mouseover', audioplay)
     
 }
+
 setInterval(setDate, 1000);
